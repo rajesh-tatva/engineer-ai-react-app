@@ -39,9 +39,14 @@ export default function Asteroid(props) {
   const [asteroidIdDetail, setAsteroidIdDetail] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [asteroidType, setAsteroidType] = useState(null);
 
   if (asteroid_id && asteroid_id !== "" && !nasaAsteroidId) {
     setNasaAsteroidId(asteroid_id);
+  }
+
+  if (type && type !== "" && !asteroid_id && !asteroidType) {
+    setAsteroidType(type);
   }
 
   useEffect(() => {
@@ -78,7 +83,7 @@ export default function Asteroid(props) {
         })
         .catch((error) => {});
     }
-  }, []);
+  }, [type]);
 
   return isLoading ? (
     <Box className={classes.progressBar}>
